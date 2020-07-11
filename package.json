@@ -1,0 +1,31 @@
+{
+  "name": "jsexcell",
+  "version": "1.0.0",
+  "description": "JavaScript SPA for studing",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack",
+    "build": "webpack --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fastunov/JSExcell.git"
+  },
+  "keywords": [
+    "JavaScript",
+    "js",
+    "excell"
+  ],
+  "author": "Serg Fastunov <fastunov@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fastunov/JSExcell/issues"
+  },
+  "homepage": "https://github.com/fastunov/JSExcell#readme",
+  "private": true,
+  "devDependencies": {
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12"
+  }
+}
