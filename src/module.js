@@ -1,4 +1,4 @@
-console.lo('Module working!')
+console.log('Module working!')
 
 async function start() {
   return await Promise.resolve('Async working!')
