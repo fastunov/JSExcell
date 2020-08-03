@@ -1,3 +1,4 @@
+/* eslint-disable no-debugger */
 import {$} from '@core/dom'
 
 export class Excel {
