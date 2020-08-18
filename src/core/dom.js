@@ -41,12 +41,28 @@ class Dom {
   get data() {
     return this.$el.dataset
   }
+
   closest(selector) {
     return $(this.$el.closest(selector))
   }
 
   getCoords() {
     return this.$el.getBoundingClientRect()
+  }
+
+  id(parse) {
+    if (parse) {
+      const parsed = this.id().split(':')
+      return {
+        row: +parsed[0],
+        col: +parsed[1]
+      }
+    }
+    return this.data.id
+  }
+
+  find(selector) {
+    return $(this.$el.querySelector(selector))
   }
 
   findAll(selector) {
@@ -57,6 +73,14 @@ class Dom {
     Object
         .keys(styles)
         .forEach(key => this.$el.style[key] = styles[key])
+  }
+
+  addClass(className) {
+    this.$el.classList.add(className)
+  }
+
+  removeClass(className) {
+    this.$el.classList.remove(className)
   }
 }
 
