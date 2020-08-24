@@ -3,32 +3,28 @@ const CODES = {
   Z: 90
 }
 
-const DEFAULT_WIDTH =120
+const DEFAULT_WIDTH = 120
 
-// function toCell(col, row) {
-//   return `
-//  <div class="cell" data-col="${col}" data-row="${row}" contenteditable></div>
-//   `
-// }
-
-function toCell(row) {
+function toCell(state, row) {
   return function(_, col) {
+    const width = getWidth(state.colState, col)
     return `
       <div class="cell"
         contenteditable
         data-col="${col}" 
         data-id="${row}:${col}"
         data-type="cell"
+        style = "width: ${width}"
       ></div>
     `
   }
 }
 
-function toCol({content, col, width}) {
+function toCol({content, index, width}) {
   return `
   <div class="column" 
         data-type="resizable" 
-        data-col="${col}" 
+        data-col="${index}" 
         style="width: ${width}">
     ${content}
     <div class="col-resize" data-resize="col"></div>
@@ -57,13 +53,15 @@ function toChar(_, index) {
 }
 
 function getWidth(state, index) {
-  return (state ? state[index] : DEFAULT_WIDTH) + 'px'
+  return (state[index] || DEFAULT_WIDTH) + 'px'
 }
 
 function withWidthFrom(state) {
   return function(content, index) {
     return {
-      content, index, width: getWidth(state.colState, index)
+      content,
+      index,
+      width: getWidth(state.colState, index)
     }
   }
 }
@@ -84,7 +82,7 @@ export function createTable(rowsCount = 15, state = {}) {
   for (let row=0; row < rowsCount; row++) {
     const cells = new Array(colsCount)
         .fill('')
-        .map(toCell(row))
+        .map(toCell(state, row))
         .join('')
     rows.push(createRow(row + 1, cells))
   }
