@@ -7,16 +7,16 @@ export function createStore(rootReducer, initialState = {}) {
       listeners.push(fn)
       return {
         unsubscribe() {
-          listeners = listeners.filter( arg => arg !== fn)
+          listeners = listeners.filter( l => l !== fn)
         }
       }
     },
-    getstate() {
+    getState() {
       return state
     },
     dispatch( action) {
       state = rootReducer(state, action)
-      listeners.forEach(arg => arg(state))
+      listeners.forEach(listener => listener(state))
     }
   }
 }
